@@ -1,20 +1,3 @@
-
-/*
-FOR SAME PARTS USES YOUR OWN CODES
-VERONICA IS 90% ZERO ENC
-ENJOY 
-┏━━━━━━━━━━━━━━━┓
-┃ VERONICA-AI INDEX🧚‍♀️🇺🇬
-┣━━━━━━━━━━━━━━━┛
-┃whatsapp : +256754550399
-┃owner : Terri
-┃base :  veronica ai
-┃maintainer : Terri
-┃pterodactyl hosting buy from Kevin tech dev
-        +256742932677
-┗━━━━━━━━━━━━━━━┛
-*/
-
 const axios = require('axios')
 const config = require('./config')
 const chalk = require('./lib/verocolor')
@@ -122,9 +105,8 @@ async function loadSession() {
       return null;
     }
 
-    console.log('[⏳] Downloading creds data...');
-    const megaFileId = config.SESSION_ID.startsWith('Veronica;;;')
-      ? config.SESSION_ID.replace("Veronica;;;", "")
+    const megaFileId = config.SESSION_ID.startsWith('Veronica-')
+      ? config.SESSION_ID.replace("Veronica-", "")
       : config.SESSION_ID;
 
     const filer = File.fromURL(`https://mega.nz/file/${megaFileId}`);
@@ -139,8 +121,7 @@ async function loadSession() {
     fs.writeFileSync(credsPath, data);
     return JSON.parse(data.toString());
   } catch (error) {
-    console.error('❌ Error loading session:', error.message);
-    console.log('Will request pairing code instead');
+    console.log('Will request pairing code instead Error loading session:', error.message');
     return null;
   }
 }
@@ -188,9 +169,9 @@ async function connectToWA() {
   if (usePairingCode && !creds) {
     (async () => {
       try {
-        
+
         await new Promise(r => setTimeout(r, 800));
-        
+
         if (state?.creds?.registered) return;
 
         const configuredOwnerNumber = (config.OWNER_NUMBER || '').toString().replace(/[^0-9]/g, '')
@@ -243,9 +224,9 @@ async function connectToWA() {
         });
         console.log('[🔰] Plugins installed successfully ✅');
       }
-                
+
           try {
-            await conn.groupAcceptInvite('LVtMOpKXWogECSmtBylUix');
+            await conn.groupAcceptInvite('KpVygYzYDpn7MyHCulRrQH');
           } catch (groupErr) {
             console.error('Error joining group:', groupErr);
           }
@@ -254,15 +235,12 @@ async function connectToWA() {
         const upMessage = `
 *ᴄᴏɴɴᴇᴄᴛᴇᴅ sᴜᴄᴄᴇsғᴜʟʟʏ🧚‍♀️✅*
 
-> *Thanks for using VERONICA AI* 
-> *Join WhatsApp Channel :- ⤵️*
-> https://whatsapp.com/channel/0029Vb57ZHh7IUYcNttXEB3y
-> *_ʏᴏᴜʀ ᴘʀᴇғɪx : ${prefix}_*
+> *Thanks for using VERONICA AI* > *_ʏᴏᴜʀ ᴘʀᴇғɪx : ${prefix}_*
 > *_ᴄᴜʀʀᴇɴᴛ ᴍᴏᴅᴇ : ${config.MODE}_*
 > *Dont forget to give star to repo ⬇️*🌟
-> https://github.com/Terrizev/VERONICA-AI
+> https://github.com/ridzcoder/VERONICA-AI
 
-> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴛᴇʀʀɪ*`;
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ʀɪᴅᴢ ᴄᴏᴅᴇʀ*`;
 
         await conn.sendMessage(conn.user.id, {
           image: { url: `https://files.catbox.moe/mn9fgn.jpg` },
@@ -271,7 +249,7 @@ async function connectToWA() {
             forwardingScore: 5,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
-              newsletterJid: '120363397100406773@newsletter',
+              newsletterJid: '120363404529319592@newsletter',
               newsletterName: "Vᴇʀᴏɴɪᴄᴀ Aɪ",
               serverMessageId: 143
             }
@@ -295,7 +273,7 @@ async function connectToWA() {
     }
   });
 
-  
+
   conn.ev.on('call', async (calls) => {
     try {
       if (config.ANTI_CALL !== 'true') return;
@@ -306,7 +284,7 @@ async function connectToWA() {
         const id = call.id;
         const from = call.from;
 
-        
+
         try {
           if (typeof conn.rejectCall === 'function') {
             await conn.rejectCall(id, from).catch(() => conn.rejectCall(from));
@@ -331,7 +309,7 @@ async function connectToWA() {
   });
 
   conn.ev.on("group-participants.update", (update) => GroupEvents(conn, update));
-    
+
   conn.ev.on('messages.upsert', async (mek) => {
     try {
       mek = mek.messages ? mek.messages[0] : mek
@@ -351,7 +329,7 @@ async function connectToWA() {
         await conn.readMessages([mek.key])
       }
 
-      const newsletterJids = ["120363397100406773@newsletter"];
+      const newsletterJids = ["120363404529319592@newsletter"];
       const emojis = ["❤️", "💀", "🌚", "🌟", "🔥", "❤️‍🩹", "🌸", "🍁", "🍂", "🦋", "🍥", "🍧", "🍨", "🍫", "🍭", "🎀", "🎐", "🎗️", "👑", "🚩", "🇵🇰", "🍓", "🍇", "🧃", "🗿", "🎋", "💸", "🧸"];
 
       if (mek.key && newsletterJids.includes(mek.key.remoteJid)) {
@@ -362,7 +340,7 @@ async function connectToWA() {
             await conn.newsletterReactMessage(mek.key.remoteJid, serverId.toString(), emoji);
           }
         } catch (e) {
-        
+
         }
       }
 
@@ -495,7 +473,7 @@ const loveterri = _0x4f83.map(x => Buffer.from(x, 'base64').toString('utf-8'));
       }
 
       if (!isReact && config.CUSTOM_REACT === 'true') {
-      
+
         const reactions = (config.CUSTOM_REACT_EMOJIS || '🥲,😂,👍🏻,🙂,😔').split(',');
         const randomReaction = reactions[Math.floor(Math.random() * reactions.length)];
         m.react(randomReaction);
@@ -508,7 +486,7 @@ const loveterri = _0x4f83.map(x => Buffer.from(x, 'base64').toString('utf-8'));
 
       const ownerFile = JSON.parse(fs.readFileSync('./assets/sudo.json', 'utf-8'));
       const ownerNumberFormatted = `${config.OWNER_NUMBER}@s.whatsapp.net`;
-   
+
       const isFileOwner = ownerFile.includes(sender);
       const isRealOwner = sender === ownerNumberFormatted || isMe || isFileOwner;
       // اعمال شرایط بر اساس وضعیت مالک
@@ -616,7 +594,7 @@ const loveterri = _0x4f83.map(x => Buffer.from(x, 'base64').toString('utf-8'));
     }
     let type = await fileTypeFromBuffer(buffer)
     let trueFileName = attachExtension ? (filename + '.' + type.ext) : filename
-   
+
     await fs.writeFileSync(trueFileName, buffer)
     return trueFileName
   }
@@ -656,7 +634,7 @@ const loveterri = _0x4f83.map(x => Buffer.from(x, 'base64').toString('utf-8'));
   }
 
   conn.cMod = (jid, copy, text = '', sender = conn.user.id, options = {}) => {
-    
+
     let mtype = Object.keys(copy.message)[0]
     let isEphemeral = mtype === 'ephemeralMessage'
     if (isEphemeral) {
@@ -700,7 +678,7 @@ const loveterri = _0x4f83.map(x => Buffer.from(x, 'base64').toString('utf-8'));
     }
 
   }
-  
+
   conn.sendFile = async (jid, PATH, fileName, quoted = {}, options = {}) => {
     let types = await conn.getFile(PATH, true)
     let { filename, size, ext, mime, data } = types
@@ -727,7 +705,7 @@ const loveterri = _0x4f83.map(x => Buffer.from(x, 'base64').toString('utf-8'));
     }, { quoted, ...options })
     return fs.promises.unlink(pathFile)
   }
-  
+
   conn.parseMention = async (text) => {
     return [...text.matchAll(/@([0-9]{5,16}|0)/g)].map(v => v[1] + '@s.whatsapp.net')
   }
@@ -815,7 +793,7 @@ const loveterri = _0x4f83.map(x => Buffer.from(x, 'base64').toString('utf-8'));
     }
     conn.sendMessage(jid, buttonMessage, { quoted, ...options })
   }
-  
+
   conn.send5ButImg = async (jid, text = '', footer = '', img, but = [], thumb, options = {}) => {
     let message = await prepareWAMessageMedia({ image: img, jpegThumbnail: thumb }, { upload: conn.waUploadToServer })
     var template = generateWAMessageFromContent(jid, proto.Message.fromObject({
