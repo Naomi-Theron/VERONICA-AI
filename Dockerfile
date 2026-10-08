@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     rm -rf /var/lib/apt/lists/*
 USER node
-RUN git clone https://github.com/Terrizev/VERONICA-AI /home/node/VERONICA-AI
+RUN git clone https://github.com/ridzcoder/VERONICA-AI /home/node/VERONICA-AI
 WORKDIR /home/node/VERONICA-AI
 RUN chmod -R 777 /home/node/VERONICA-AI/
 RUN yarn install --network-concurrency 1
